@@ -40,6 +40,10 @@ class EventServiceProvider extends ServiceProvider
                 'route'=>'profile',
                 'icon'=>'fas fa-user-circle'
             ],[
+                'text'=>'Usuarios',
+                'route'=>'users.index',
+                'icon'=>'fas fa-users'
+            ],[
                 'text'=>'Valores',
                 'route'=>'values.index',
                 'icon'=>'fas fa-tags'

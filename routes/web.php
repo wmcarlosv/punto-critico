@@ -20,8 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['prefix'=>'admin', 'middleware'=>array('auth')], function(){
+    Route::resource('users',App\Http\Controllers\UsersController::class);
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     Route::get('/profile', [App\Http\Controllers\UsersController::class, 'profile'])->name('profile');
+    Route::put('/change_profile',[App\Http\Controllers\UsersController::class, 'change_profile'])->name('change_profile');
+    Route::put('/change_password',[App\Http\Controllers\UsersController::class, 'change_password'])->name('change_password');
     Route::resource('values',App\Http\Controllers\ValuesController::class);
     Route::resource('sliders',App\Http\Controllers\SlidersController::class);
     Route::resource('experts',App\Http\Controllers\ExpertsController::class);
