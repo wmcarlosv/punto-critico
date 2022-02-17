@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Proces;
+use Auth;
+use Session;
+use Storage;
 
 class ProcessController extends Controller
 {
@@ -13,7 +17,8 @@ class ProcessController extends Controller
      */
     public function index()
     {
-        //
+        $process = Proces::all();
+        return view('admin.process.index', Compact('process'));
     }
 
     /**
@@ -23,7 +28,7 @@ class ProcessController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.process.new');
     }
 
     /**
@@ -34,7 +39,30 @@ class ProcessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'icon'=>'required',
+            'position'=>'required',
+            'content'=>'required'
+        ]);
+
+        $proces = new Proces();
+        $proces->title = $request->title;
+        $proces->user_id = Auth::user()->id;
+        $proces->position = $request->position;
+        $proces->content = $request->content;
+
+        if($request->hasFile('icon')){
+            $proces->icon = $request->icon->store('/public/process');
+        }
+
+        if($proces->save()){
+            Session::flash('success','Registro Insertado con Exito!!');
+        }else{
+            Session::flash('errors', 'Error el intentar realizar el Registro!!');
+        }
+
+        return redirect()->route('process.index');
     }
 
     /**
@@ -56,7 +84,8 @@ class ProcessController extends Controller
      */
     public function edit($id)
     {
-        //
+        $proces = Proces::findorfail($id);
+        return view('admin.process.edit',Compact('proces'));
     }
 
     /**
@@ -68,7 +97,29 @@ class ProcessController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'position'=>'required',
+            'content'=>'required'
+        ]);
+
+        $proces = Proces::findorfail($id);
+        $proces->title = $request->title;
+        $proces->user_id = Auth::user()->id;
+        $proces->position = $request->position;
+        $proces->content = $request->content;
+
+        if($request->hasFile('icon')){
+            $proces->icon = $request->icon->store('/public/process');
+        }
+
+        if($proces->update()){
+            Session::flash('success','Registro Actualizado con Exito!!');
+        }else{
+            Session::flash('errors', 'Error el intentar actualizar el Registro!!');
+        }
+
+        return redirect()->route('process.index');
     }
 
     /**
@@ -79,6 +130,13 @@ class ProcessController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $proces = Proces::findorfail($id);
+        Storage::delete($proces->icon);
+        if($proces->delete()){
+            Session::flash('success','Registro Eliminado con Exito!!');
+        }else{
+            Session::flash('errors','Error al tratar de eliminar el Registro!!');
+        }
+        return redirect()->route('process.index');
     }
 }
