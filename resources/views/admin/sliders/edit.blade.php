@@ -37,22 +37,3 @@
       </div>
     </div>
 @stop
-
-@section('js')
-<script>
-  $(document).ready(function(){
-    $("select[name='type']").change(function(){
-      let type = $(this).val();
-      if(type != '-'){ 
-        if(type == 'text'){
-          $("#type_value").html("<label>Valor</label><textarea class='form-control' name='value'></textarea>");
-        }else{
-          $("#type_value").html("<label>Archivo</label><input type='file' name='file' class='form-control' />");
-        }
-      }else{
-        $("#type_value").empty();
-      }
-    });
-  });
-</script>
-@stop

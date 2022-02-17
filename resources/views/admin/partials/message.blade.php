@@ -15,7 +15,7 @@
             Swal.fire({
               position: 'top-end',
               type: 'error',
-              title: '{{ Session::get("error") }}',
+              title: '{{ Session::get("errors") }}',
               showConfirmButton: false,
               timer: 2500
             });
