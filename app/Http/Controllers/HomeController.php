@@ -9,6 +9,7 @@ use App\Models\Slider;
 use App\Models\Expert;
 use App\Models\Service;
 use App\Models\Customer;
+use App\Models\Proces;
 
 class HomeController extends Controller
 {
@@ -35,6 +36,7 @@ class HomeController extends Controller
         $experts = Expert::all();
         $services = Service::all();
         $customers = Customer::all();
-        return view('admin.dashboard',Compact('users','values','sliders','experts','services', 'customers'));
+        $process = Proces::all();
+        return view('admin.dashboard',Compact('users','values','sliders','experts','services', 'customers','process'));
     }
 }

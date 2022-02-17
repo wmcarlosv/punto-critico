@@ -73,7 +73,7 @@
               <span class="info-box-icon bg-red"><i class="fas fa-cog"></i></span>
               <div class="info-box-content">
                 <span class="info-box-text">Procesos</span>
-                <span class="info-box-number">0</span>
+                <span class="info-box-number">{{ $process->count() }}</span>
               </div>
             </div>
         </div>
