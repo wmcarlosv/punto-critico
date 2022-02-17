@@ -23,7 +23,7 @@
               <span class="info-box-icon bg-green"><i class="fas fa-tags"></i></span>
               <div class="info-box-content">
                 <span class="info-box-text">Valores</span>
-                <span class="info-box-number">0</span>
+                <span class="info-box-number">{{ $values->count() }}</span>
               </div>
             </div>
         </div>

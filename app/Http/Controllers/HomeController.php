@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Value;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.dashboard',Compact('users'));
+        $values = Value::all();
+        return view('admin.dashboard',Compact('users','values'));
     }
 }
