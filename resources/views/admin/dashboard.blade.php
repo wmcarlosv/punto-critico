@@ -33,7 +33,7 @@
               <span class="info-box-icon bg-blue"><i class="fas fa-images"></i></span>
               <div class="info-box-content">
                 <span class="info-box-text">Galeria de Fotos</span>
-                <span class="info-box-number">0</span>
+                <span class="info-box-number">{{ $sliders->count() }}</span>
               </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
               <span class="info-box-icon bg-red"><i class="fas fa-flask"></i></span>
               <div class="info-box-content">
                 <span class="info-box-text">Expertos</span>
-                <span class="info-box-number">0</span>
+                <span class="info-box-number">{{ $experts->count() }}</span>
               </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
               <span class="info-box-icon bg-yellow"><i class="fas fa-list"></i></span>
               <div class="info-box-content">
                 <span class="info-box-text">Servicios</span>
-                <span class="info-box-number">0</span>
+                <span class="info-box-number">{{ $services->count() }}</span>
               </div>
             </div>
         </div>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Value;
+use App\Models\Slider;
+use App\Models\Expert;
+use App\Models\Service;
 
 class HomeController extends Controller
 {
@@ -27,6 +30,9 @@ class HomeController extends Controller
     {
         $users = User::all();
         $values = Value::all();
-        return view('admin.dashboard',Compact('users','values'));
+        $sliders = Slider::all();
+        $experts = Expert::all();
+        $services = Service::all();
+        return view('admin.dashboard',Compact('users','values','sliders','experts','services'));
     }
 }
