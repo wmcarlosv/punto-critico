@@ -8,6 +8,7 @@ use App\Models\Value;
 use App\Models\Slider;
 use App\Models\Expert;
 use App\Models\Service;
+use App\Models\Customer;
 
 class HomeController extends Controller
 {
@@ -33,6 +34,7 @@ class HomeController extends Controller
         $sliders = Slider::all();
         $experts = Expert::all();
         $services = Service::all();
-        return view('admin.dashboard',Compact('users','values','sliders','experts','services'));
+        $customers = Customer::all();
+        return view('admin.dashboard',Compact('users','values','sliders','experts','services', 'customers'));
     }
 }
